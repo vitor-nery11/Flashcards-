@@ -36,7 +36,7 @@ app.get('/cards', (req, res) => {
 interface CriarCardPost {
     pergunta: string;
     resposta: string;
-    dificuldade?: string;
+    dificuldade?: Dificuldade;
 }
 
 
@@ -48,7 +48,8 @@ app.post('/cards', (req: Request, res: Response) => {
 
         id: randomUUID(),
         pergunta,
-        resposta
+        resposta, 
+        dificuldade
     }
 
     cards.push(novoCard);
