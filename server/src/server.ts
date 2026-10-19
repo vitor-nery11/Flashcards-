@@ -33,11 +33,7 @@ app.get('/cards', (req, res) => {
 
 
 
-interface CriarCardPost {
-    pergunta: string;
-    resposta: string;
-    dificuldade?: Dificuldade;
-}
+type CriarCardPost = Omit <Flashcards, 'id'>;
 
 
 app.post('/cards', (req: Request, res: Response) => {
@@ -60,11 +56,26 @@ app.post('/cards', (req: Request, res: Response) => {
 });
 
 
+app.patch('/cards/:id', (req: Request, res: Response)=> {
+    const {id} = req.params;
+    const {dificuldade} = req.body;
 
+    const cardEncontrado = cards.find((card) => card.id === id);
+
+    if (!cardEncontrado){
+        return res.status(404).json({erro: 'Card não encontrado'})
+    }
+
+    if(dificuldade !== undefined) {
+        cardEncontrado.dificuldade = dificuldade;
+    }
+
+    return res.json(cardEncontrado)
+})
 
 
 
 app.listen (3001, ()=> {
     console.log('O servidor esta rodando na porta 3001');
-    console.log('Ola mundo')
+
 })
