@@ -40,7 +40,7 @@ return (
       <NovoCardForm onCardCriado={handleCardCriado} />
 
       {/* 13. Grid responsivo para organizar os cards em colunas quando houver múltiplos itens */}
-      <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 place-items-center">
+      <div className="mt-8 w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 place-items-center">
         {/* 14. Usamos o método .map() para iterar sobre a lista de cards e transformar cada um em um componente <Card /> */}
         {cards.map((card) => (
           // 15. Renderizamos o componente passando o objeto 'card' e a propriedade obrigatória 'key' com o ID único
